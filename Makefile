@@ -82,8 +82,7 @@ llvm-rt:
 	-DCMAKE_NM='$(CURDIR)/llvm-build/gnu/target-final/bin/llvm-nm' \
 	-DCMAKE_RANLIB='$(CURDIR)/llvm-build/gnu/target-final/bin/llvm-ranlib' \
 	-DLLVM_CMAKE_DIR='$(CURDIR)/llvm-build/gnu/target-final/lib/cmake/llvm' \
-	-DLLVM_DEFAULT_TARGET_TRIPLE='riscv64-unknown-elf' \
-	-DCOMPILER_RT_INCLUDE_TESTS='Off'
+	-DLLVM_DEFAULT_TARGET_TRIPLE='riscv64-unknown-elf'
 	cmake \
 	--build $(CURDIR)/llvm-build/gnu/build-compiler-rt \
 	--target install \

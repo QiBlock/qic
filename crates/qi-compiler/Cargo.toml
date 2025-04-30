@@ -2,10 +2,33 @@
 name = "qi-compiler"
 version = "0.1.0"
 edition = "2024"
+description = "Solidity frontend for the Qi Compiler"
 
 [[bin]]
 name = "qic"
 path = "src/cli/main.rs"
-description = "Qi Compiler"
 
 [dependencies]
+clap = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+which = { workspace = true }
+path-slash = { workspace = true }
+rayon = { workspace = true, optional = true }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+semver = { workspace = true }
+once_cell = { workspace = true }
+regex = { workspace = true }
+hex = { workspace = true }
+num = { workspace = true }
+sha3 = { workspace = true }
+llvm-sys ={ workspace = true }
+
+[features]
+parallel = ["rayon"]
+default = ["parallel"]
+
+[build-dependencies]
+git2 = "*"

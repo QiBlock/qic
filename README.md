@@ -1,2 +1,2 @@
 # Qi compiler
-Qi is a compiler for the Qi contract, a program running in QiVM.
+A llvm-based compiler for Qi contracts, programs running in QiVM. It can be built in MacOS (x86_64).
