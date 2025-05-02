@@ -9,22 +9,23 @@ name = "qic"
 path = "src/cli/main.rs"
 
 [dependencies]
-clap = { workspace = true }
-thiserror = { workspace = true }
-anyhow = { workspace = true }
-which = { workspace = true }
-path-slash = { workspace = true }
-rayon = { workspace = true, optional = true }
+clap = { version = "4", features = ["derive"] }
+path-slash = "0.2"
+anyhow = "1.0"
+rayon = { version = "1.8", optional = true }
+which = "*"
 
-serde = { workspace = true }
-serde_json = { workspace = true }
-semver = { workspace = true }
-once_cell = { workspace = true }
-regex = { workspace = true }
-hex = { workspace = true }
-num = { workspace = true }
-sha3 = { workspace = true }
-llvm-sys ={ workspace = true }
+
+serde = "*"
+serde_json = "*"
+semver = "*"
+itertools = "*"
+
+revive-solc-json-interface = { git = "https://github.com/paritytech/revive", features = [
+  "resolc",
+] }
+revive-common = { git = "https://github.com/paritytech/revive" }
+llvm-sys = { version = "201" }
 
 [features]
 parallel = ["rayon"]

@@ -1,5 +1,10 @@
+pub mod debug_config;
+pub mod optimizer;
+pub mod solc;
 pub mod versions;
 
-pub const EXIT_CODE_SUCCESS: i32 = 0;
-
-pub const EXIT_CODE_FAILURE: i32 = 1;
+pub use debug_config::DebugConfig;
+pub use optimizer::settings::Settings as OptimizerSettings;
+pub use solc::Compiler;
+pub use solc::solc_compiler::SolcCompiler;
+pub use versions::Version;
