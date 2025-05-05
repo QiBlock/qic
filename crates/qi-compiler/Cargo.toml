@@ -27,6 +27,11 @@ revive-solc-json-interface = { git = "https://github.com/paritytech/revive", fea
 revive-common = { git = "https://github.com/paritytech/revive" }
 llvm-sys = { version = "201" }
 
+logos = "*"
+rowan = "*"
+num-derive = "*"
+num-traits = "*"
+
 [features]
 parallel = ["rayon"]
 default = ["parallel"]
