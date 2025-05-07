@@ -1,0 +1,95 @@
+//   //          -- comment
+//   Name =      -- non-terminal definition
+//   'ident'     -- keyword or punct token (terminal)
+//   '#ident'    -- generic token (terminal): #ident
+//   '@ident'    -- literal token (terminal): @string_literal, @hex_number, @decimal_number, @hex_literal
+//   A B         -- sequence
+//   A | B       -- alternation
+//   A*          -- zero or more repetition
+//   A?          -- zero or one repetition
+//   (A)         -- same as A
+//   label:A     -- suggested name for field of AST node
+Object =
+  'object' '@string_literal' '{' Code ObjectProperty* '}'
+
+Code =
+  'code' Block
+
+ObjectProperty =
+  Object | Data
+
+Data =
+  'data' '@string_literal' ('@hex_literal' | '@string_literal')
+
+Block =
+  '{' Statement* '}'
+
+Statement =
+  Block
+| FunctionDefinition
+| VariableDeclaration
+| Assignment
+| If
+| Expression
+| Switch
+| ForLoop
+| BreakContinue
+| Leave
+
+FunctionDefinition =
+  'function'
+  '#ident'
+  '('
+  TypedIdentifierList?
+  ')'
+  ('->' TypedIdentifierList)?
+  Block
+
+VariableDeclaration =
+  'let' TypedIdentifierList (':=' Expression)?
+
+Assignment =
+  IdentifierList ':=' Expression
+
+Expression =
+  FunctionCall | '#ident' | Literal
+
+If =
+  'if' Expression Block
+
+Switch =
+  'switch' Expression (Case Case* Default? | Default)
+
+Case =
+  'case' Literal Block
+
+Default =
+  'default' Block
+
+ForLoop =
+  'for' Block Expression Block Block
+
+BreakContinue =
+  'break' | 'continue'
+
+Leave =
+  'leave'
+
+FunctionCall =
+  '#ident' '(' (Expression (',' Expression)*)? ')'
+
+IdentifierList =
+  '#ident' (',' '#ident')*
+
+TypedIdentifierList =
+  TypedIdentifier (',' TypedIdentifier)*
+
+TypedIdentifier =
+  '#ident' (':' TypeName)?
+
+Literal =
+  ('@hex_number' | '@decimal_number' | '@string_literal' | 'true' | 'false')
+  (':' TypeName)?
+
+TypeName =
+  '#ident'

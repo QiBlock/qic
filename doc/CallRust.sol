@@ -17,7 +17,10 @@ contract CallRust {
         }
     }
 
-    function fibonacciRust(uint32 n, IRustContract rustLib) external pure returns (uint32) {
+    function fibonacciRust(
+        uint32 n,
+        IRustContract rustLib
+    ) external pure returns (uint32) {
         try rustLib.fibonacci(n) returns (uint32 result) {
             return result;
         } catch (bytes memory) {
