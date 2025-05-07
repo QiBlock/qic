@@ -16,9 +16,13 @@ use utils::{clean_token_name, pluralize, to_lower_snake_case, to_upper_snake_cas
 pub(crate) fn generate(check: bool) {
     let grammar =
         fs::read_to_string(project_root().join("doc/yul.ungram")).unwrap().parse().unwrap();
+    fs::write(project_root().join("doc/yul.grammar"), format!("{:#?}", grammar))
+        .expect("write grammar failed");
     let ast = lower(&grammar);
+    fs::write(project_root().join("doc/yul.ast"), format!("{:#?}", ast)).expect("write ast failed");
     let kinds_src = generate_kind_src(&ast.nodes, &ast.enums, &grammar);
-
+    fs::write(project_root().join("doc/yul.kinds"), format!("{:#?}", kinds_src))
+        .expect("write kinds failed");
     let syntax_kinds = generate_syntax_kinds(kinds_src);
     let syntax_kinds_file =
         project_root().join("crates/qi-compiler/src/yul/parser/syntax_kind/generated.rs");

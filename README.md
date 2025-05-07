@@ -6,3 +6,8 @@ A llvm-based compiler for Qi contracts, programs running in QiVM. It can be buil
 cd doc
 cargo run -- --debug-output-dir . ERC20.sol
 ```
+
+## syntax kinds codegen
+```bash
+cargo codegen
+```

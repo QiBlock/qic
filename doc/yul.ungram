@@ -40,9 +40,9 @@ FunctionDefinition =
   'function'
   '#ident'
   '('
-  TypedIdentifierList?
+  params:TypedIdentifierList?
   ')'
-  ('->' TypedIdentifierList)?
+  ('->' ret:TypedIdentifierList)?
   body:Block
 
 VariableDeclaration =
