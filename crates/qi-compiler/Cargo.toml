@@ -8,6 +8,14 @@ description = "Solidity frontend for the Qi Compiler"
 name = "qic"
 path = "src/cli/main.rs"
 
+[[bin]]
+name = "lexer"
+path = "src/cli/lexer.rs"
+
+[[bin]]
+name = "grammar"
+path = "src/cli/grammar.rs"
+
 [dependencies]
 clap = { version = "4", features = ["derive"] }
 path-slash = "0.2"
@@ -31,6 +39,10 @@ logos = "*"
 rowan = "*"
 num-derive = "*"
 num-traits = "*"
+ungrammar = "*"
+either = "*"
+proc-macro2 = "1.0.94"
+quote = "1.0.40"
 
 [features]
 parallel = ["rayon"]
@@ -38,3 +50,7 @@ default = ["parallel"]
 
 [build-dependencies]
 git2 = "*"
+
+[dev-dependencies]
+logos-codegen = {version = "*", features = ["fuzzing"] }
+regex-syntax = "*"

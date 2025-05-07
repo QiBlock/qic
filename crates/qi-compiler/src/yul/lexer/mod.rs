@@ -41,31 +41,3 @@ impl<'a> Iterator for Lexer<'a> {
         Some(Self::Item { kind, text, range })
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use std::fs::File;
-    use std::io::{BufReader, Read};
-
-    #[test]
-    fn test_tokenize() {
-        let crate_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
-        let file = File::open(format!("{}/../../test/ERC20.sol.ERC20.yul", crate_dir)).unwrap();
-        let mut reader = BufReader::new(file);
-        let mut source = String::new();
-        reader.read_to_string(&mut source).unwrap();
-
-        let mut lexer = Lexer::new(source.as_str());
-        while let Some(token) = lexer.next() {
-            if token.kind.is_err() {
-                panic!("Error tokenizing: {:?}", token);
-            }
-            let token_kind = token.kind.unwrap();
-            if token_kind.is_skip() {
-                continue;
-            }
-            println!("Token: {:?}", token);
-        }
-    }
-}
