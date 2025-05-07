@@ -3,6 +3,6 @@ A llvm-based compiler for Qi contracts, programs running in QiVM. It can be buil
 
 ## compile sol to yul
 ```bash
-cd test
-cargo run -- --debug-output-dir . hello_world.sol
+cd doc
+cargo run -- --debug-output-dir . ERC20.sol
 ```

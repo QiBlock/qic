@@ -61,7 +61,7 @@ pub enum TokenKind {
 
     /// The `:=` symbol.  priority: 4
     #[token(":=")]
-    Assignment,
+    Walrus,
     /// The `->` symbol.  priority: 4
     #[token("->")]
     Arrow,
@@ -143,7 +143,7 @@ impl TokenKind {
     pub fn is_symbol(&self) -> bool {
         matches!(
             self,
-            Self::Assignment
+            Self::Walrus
                 | Self::Arrow
                 | Self::BracketCurlyLeft
                 | Self::BracketCurlyRight

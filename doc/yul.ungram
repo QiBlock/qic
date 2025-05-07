@@ -43,7 +43,7 @@ FunctionDefinition =
   TypedIdentifierList?
   ')'
   ('->' TypedIdentifierList)?
-  Block
+  body:Block
 
 VariableDeclaration =
   'let' TypedIdentifierList (':=' Expression)?
@@ -55,7 +55,7 @@ Expression =
   FunctionCall | '#ident' | Literal
 
 If =
-  'if' Expression Block
+  'if' condition:Expression then_branch:Block
 
 Switch =
   'switch' Expression (Case Case* Default? | Default)
@@ -76,7 +76,7 @@ Leave =
   'leave'
 
 FunctionCall =
-  '#ident' '(' (Expression (',' Expression)*)? ')'
+  '#ident' '(' args:(Expression (',' Expression)*)? ')'
 
 IdentifierList =
   '#ident' (',' '#ident')*
